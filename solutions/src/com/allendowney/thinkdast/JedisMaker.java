@@ -1,5 +1,6 @@
 package com.allendowney.thinkdast;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,7 +43,7 @@ public class JedisMaker {
 
 		// read the file
 		while (true) {
-			String line = br.readLine();
+			String line = BoundedLineReader.readLine(br, 5_000_000);
 			if (line == null) break;
 			sb.append(line);
 		}
