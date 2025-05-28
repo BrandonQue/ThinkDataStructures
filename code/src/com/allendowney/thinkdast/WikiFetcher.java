@@ -1,5 +1,7 @@
 package com.allendowney.thinkdast;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,7 +48,7 @@ public class WikiFetcher {
 	 * @throws IOException
 	 */
 	public Elements readWikipedia(String url) throws IOException {
-		URL realURL = new URL(url);
+		URL realURL = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
 		// assemble the file name
 		String slash = File.separator;
